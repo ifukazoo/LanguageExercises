@@ -1,0 +1,10 @@
+*.o
+*.d
+*.obj
+*.out
+*.swp
+core
+tags
+p
+testp
+
