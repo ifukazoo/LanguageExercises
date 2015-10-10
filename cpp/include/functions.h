@@ -4,21 +4,10 @@
 #include <cstdlib>
 #include <cerrno>
 
+#include <utility>
 #include <algorithm>
 #include <numeric>
 #include <limits>
-
-struct IsDigit : public std::binary_function<bool, char, bool> {
-  bool operator() (bool result, char c) {
-    return !result ? result : (isdigit(c) > 0);
-  }
-};
-
-struct IsDigitOrPoint : public std::binary_function<bool, char, bool> {
-  bool operator() (bool result, char c) {
-    return !result ? result : (isdigit(c) > 0 || c == '.');
-  }
-};
 
 template<typename T, std::size_t SIZE>
 inline std::size_t array_length(const T (&)[SIZE])
@@ -45,7 +34,7 @@ std::pair<bool, Float> str_to_f(std::string s)
   char* endptr;
   errno = 0;
   double double_val = strtod(s.c_str(), &endptr);
-  if (errno || *endptr != '\0') {
+  if (errno || *endptr) {
     return std::make_pair(false, 0);
   }
   bool toolarge = double_val >  std::numeric_limits<Float>::max();
@@ -57,24 +46,16 @@ std::pair<bool, Float> str_to_f(std::string s)
 }
 
 template<typename Integer>
-std::pair<bool, Integer> string_to_integer(std::string s)
+std::pair<bool, Integer> str_to_i(std::string s)
 {
   if (s.empty()) {
     return std::make_pair(false, 0);
   }
 
-  std::string::iterator start =
-    (s[0] == '+' || s[0] == '-')
-    ? s.begin() + 1
-    : s.begin();
-
-  if (!accumulate(start, s.end(), true, IsDigit())) {
-    return std::make_pair(false, 0);
-  }
-
+  char* endptr;
   errno = 0;
-  long long_val = strtol(s.c_str(), NULL, /*base*/10);
-  if (errno) {
+  long long_val = strtol(s.c_str(), &endptr, /*base*/10);
+  if (errno || *endptr) {
     return std::make_pair(false, 0);
   }
 

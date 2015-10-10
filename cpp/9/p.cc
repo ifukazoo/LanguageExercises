@@ -20,13 +20,13 @@ int main()
 
   std::pair<bool, int> result;
   int ilength = 0;
-  result = string_to_integer<int>(length);
+  result = str_to_i<int>(length);
   if (!result.first || result.second < 0) return EXIT_FAILURE;
 
   ilength = result.second;
 
   int iwidth = 0;
-  result = string_to_integer<int>(width);
+  result = str_to_i<int>(width);
   if (!result.first || result.second < 0) return EXIT_FAILURE;
   iwidth = result.second;
 

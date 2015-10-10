@@ -19,13 +19,13 @@ int main()
 
   std::pair<bool, int> result;
   int iage = 0;
-  result = string_to_integer<int>(age);
+  result = str_to_i<int>(age);
   if (!result.first || result.second < 0) return EXIT_FAILURE;
 
   iage = result.second;
 
   int iretire = 0;
-  result = string_to_integer<int>(retire);
+  result = str_to_i<int>(retire);
   if (!result.first || result.second < 0) return EXIT_FAILURE;
   iretire = result.second;
 

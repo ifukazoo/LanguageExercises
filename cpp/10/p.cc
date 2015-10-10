@@ -19,8 +19,8 @@ struct Sum {
       // すでに失敗がわかっている
       return sum;
     }
-    std::pair<bool, int> conv_piece = string_to_integer<int>(input.first);
-    std::pair<bool, int> conv_quant = string_to_integer<int>(input.second);
+    std::pair<bool, int> conv_piece = str_to_i<int>(input.first);
+    std::pair<bool, int> conv_quant = str_to_i<int>(input.second);
     if (! (conv_piece.first && conv_quant.first)) {
       return std::make_pair(false, 0);
     }

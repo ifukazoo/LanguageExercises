@@ -18,13 +18,13 @@ int main()
 
   std::pair<bool, int> result;
   int peopleN = 0;
-  result = string_to_integer<int>(people);
+  result = str_to_i<int>(people);
   if (!result.first || result.second < 0) return EXIT_FAILURE;
 
   peopleN = result.second;
 
   int pizzasN = 0;
-  result = string_to_integer<int>(pizzas);
+  result = str_to_i<int>(pizzas);
   if (!result.first || result.second < 0) return EXIT_FAILURE;
   pizzasN = result.second;
 

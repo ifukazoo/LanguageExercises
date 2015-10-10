@@ -20,12 +20,12 @@ int main()
     std::cout << "What is the second number? ";
     std::cin >> second_in;
 
-    std::pair<bool, long> result_first = string_to_integer<long>(first_in);
+    std::pair<bool, long> result_first = str_to_i<long>(first_in);
     if (!result_first.first) {
       std::cout << "illegal first number" << std::endl;
       continue;
     }
-    std::pair<bool, long> result_second = string_to_integer<long>(second_in);
+    std::pair<bool, long> result_second = str_to_i<long>(second_in);
     if (!result_second.first) {
       std::cout << "illegal second number" << std::endl;
       continue;
