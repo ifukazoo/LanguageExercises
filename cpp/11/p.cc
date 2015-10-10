@@ -15,9 +15,11 @@ int main()
   std::cout << "What is the exchange rate? " << std::endl;
   std::cin >> inputRate;
 
-  std::pair<bool, double> conv_euro = str_to_f<double>(inputEuro);
+  typedef std::pair<bool, double> Result;
+
+  Result conv_euro = str_to_f<double>(inputEuro);
   if (!conv_euro.first) return EXIT_FAILURE;
-  std::pair<bool, double> conv_rate = str_to_f<double>(inputRate);
+  Result conv_rate = str_to_f<double>(inputRate);
   if (!conv_rate.first) return EXIT_FAILURE;
 
   double euro = conv_euro.second;
