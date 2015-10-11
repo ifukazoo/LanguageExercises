@@ -4,6 +4,7 @@
 #include <cstdlib>
 #include <cerrno>
 
+#include <sstream>
 #include <utility>
 #include <algorithm>
 #include <numeric>
@@ -13,6 +14,13 @@ template<typename T, std::size_t SIZE>
 inline std::size_t array_length(const T (&)[SIZE])
 {
   return SIZE;
+}
+template<typename T>
+std::string to_string(const T& value)
+{
+  std::ostringstream oss;
+  oss << value;
+  return oss.str();
 }
 
 #if 0

@@ -147,6 +147,11 @@ TEST(Test, string_to_float_toosmall) {
   std::pair<bool, float> result = str_to_f<float>("-3.40282e+39");
   EXPECT_FALSE(result.first);
 }
+TEST(Test, to_string) {
+  EXPECT_STREQ("0", to_string(0).c_str());
+  EXPECT_STREQ("1.1", to_string(1.1).c_str());
+  EXPECT_STREQ("c", to_string('c').c_str());
+}
 
 int main(int argc, char **argv) {
   testing::InitGoogleTest(&argc, argv);
