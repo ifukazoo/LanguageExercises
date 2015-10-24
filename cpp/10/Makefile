@@ -31,4 +31,4 @@ endif
 
 .PHONY:clean
 clean:
-	rm -rf $(PRODUCTION) $(TEST) *.d core tags
+	rm -rf $(PRODUCTION) $(TEST) *.d *.o core tags
