@@ -1,34 +1,27 @@
 #Makefile
 
-PRODUCTION = \
-	p\
+PRODUCTION := p
 
-TEST = \
-	testp\
+TEST_PROG := testp
 
-GTEST_DIR = /opt/gtest/gtest-1.7.0
-GTEST_HEADER_DIR = $(GTEST_DIR)/include
-GTEST_LIB_DIR = $(GTEST_DIR)/make
-GTEST_LIB = gtest_main.a
-GTEST_CFLAG = -I $(GTEST_HEADER_DIR) -L $(GTEST_LIB_DIR) -l:$(GTEST_LIB) -lpthread
+GTEST_DIR := /opt/gtest/gtest-1.7.0
+GTEST_INCLUDE := $(GTEST_DIR)/include
+GTEST_LIB_DIR := $(GTEST_DIR)/make
 
-LOCAL_INCLUDE_DIR = ../include
-CC     =  g++
-CFLAGS = -std=c++11 -g -Wall -Wextra -MD
+CPPFLAGS := -I ../include -std=c++11 -Wall -Wextra -MMD -MP
 
 all: $(PRODUCTION)
-test: $(PRODUCTION) $(TEST)
-	./$(TEST)
+test: $(PRODUCTION) $(TEST_PROG)
+	./$(TEST_PROG)
 
-ifeq ($(MAKECMDGOALS), test)
-CFLAGS += $(GTEST_CFLAG)
-endif
+$(TEST_PROG): CPPFLAGS := -I $(GTEST_INCLUDE)
+$(TEST_PROG): LDLIBS := -L $(GTEST_LIB_DIR) -l:gtest_main.a -lpthread
 
-%:%.cc
-	$(CC) $< $(CFLAGS) -I $(LOCAL_INCLUDE_DIR) -o $*
+debug: CPPFLAGS += -g
+debug: $(PRODUCTION)
 
 -include *.d
 
-.PHONY:clean
+.PHONY:clean test
 clean:
 	rm -rf $(PRODUCTION) $(TEST) *.d *.o core tags
