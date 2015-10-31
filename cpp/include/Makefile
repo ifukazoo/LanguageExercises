@@ -1,30 +1,22 @@
 #Makefile
 
-TEST = \
-	testp\
+TEST_PROGRAM := testp
 
-GTEST_DIR = /opt/gtest/gtest-1.7.0
-GTEST_HEADER_DIR = $(GTEST_DIR)/include
-GTEST_LIB_DIR = $(GTEST_DIR)/make
-GTEST_LIB = gtest_main.a
-GTEST_CFLAG = -I $(GTEST_HEADER_DIR) -L $(GTEST_LIB_DIR) -l:$(GTEST_LIB) -lpthread
+all:   $(TEST_PROGRAM)
+	./$(TEST_PROGRAM)
 
-# LOCAL_INCLUDE_DIR = ../include
-CC     =  g++
-CFLAGS = -g -Wall -Wextra -MD
+GTEST_DIR     := /opt/gtest/gtest-1.7.0
+GTEST_INCLUDE := $(GTEST_DIR)/include
+GTEST_LIB_DIR := $(GTEST_DIR)/make
 
-test: $(TEST)
-	./$(TEST)
+CPPFLAGS := -I ../include -std=c++11 -Wall -Wextra -MMD -MP
+$(TEST_PROGRAM): CPPFLAGS := -I $(GTEST_INCLUDE)
 
-ifeq ($(MAKECMDGOALS), test)
-CFLAGS += $(GTEST_CFLAG)
-endif
-
-%:%.cc
-	$(CC) $< $(CFLAGS) -o $*
+$(TEST_PROGRAM): LDFLAGS := -L $(GTEST_LIB_DIR)
+$(TEST_PROGRAM): LDLIBS  := -l:gtest_main.a -lpthread
 
 -include *.d
 
-.PHONY:clean
+.PHONY:clean all
 clean:
-	rm -rf $(TEST) *.d core tags
+	rm -rf $(TEST_PROGRAM) *.d *.o core tags
