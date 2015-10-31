@@ -14,10 +14,9 @@ GTEST_LIB_DIR := $(GTEST_DIR)/make
 
 CPPFLAGS := -I ../include -std=c++11 -Wall -Wextra -MMD -MP
 debug:           CPPFLAGS += -pg
+$(TEST_PROGRAM): gtest_main.a -lpthread
 $(TEST_PROGRAM): CPPFLAGS := -I $(GTEST_INCLUDE)
-
-$(TEST_PROGRAM): LDFLAGS := -L $(GTEST_LIB_DIR)
-$(TEST_PROGRAM): LDLIBS  := -l:gtest_main.a -lpthread
+vpath %.a $(GTEST_LIB_DIR)
 
 -include *.d
 
