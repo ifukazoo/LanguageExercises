@@ -15,7 +15,8 @@ test: $(PRODUCTION) $(TEST_PROG)
 	./$(TEST_PROG)
 
 $(TEST_PROG): CPPFLAGS := -I $(GTEST_INCLUDE)
-$(TEST_PROG): LDLIBS := -L $(GTEST_LIB_DIR) -l:gtest_main.a -lpthread
+$(TEST_PROG): LDFLAGS  := -L $(GTEST_LIB_DIR)
+$(TEST_PROG): LDLIBS := -l:gtest_main.a -lpthread
 
 debug: CPPFLAGS += -g
 debug: $(PRODUCTION)
@@ -24,4 +25,4 @@ debug: $(PRODUCTION)
 
 .PHONY:clean test
 clean:
-	rm -rf $(PRODUCTION) $(TEST) *.d *.o core tags
+	rm -rf $(PRODUCTION) $(TEST_PROG) *.d *.o core tags
