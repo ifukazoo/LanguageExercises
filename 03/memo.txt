@@ -1,0 +1,1 @@
+文字列内のquote,double quoteのエスケープ
