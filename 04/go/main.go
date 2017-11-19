@@ -17,7 +17,7 @@ func main() {
 	}
 	noun := scanner.Text()
 
-	fmt.Print("Enter a verv: ")
+	fmt.Print("Enter a verb: ")
 	scanner.Scan()
 	if err := scanner.Err(); err != nil {
 		os.Exit(1)
