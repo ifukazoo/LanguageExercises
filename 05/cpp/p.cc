@@ -1,44 +1,23 @@
-#include <cstdlib>
-#include <cctype>
-#include <cerrno>
-#include <string>
 #include <iostream>
-#include <numeric>
-#include <limits>
-
-#include "functions.h"
-
-typedef std::string String;
+#include <string>
 
 int main()
 {
-  long first, second;
-  String first_in, second_in;
-  while (true) {
+    std::string first_number, second_number;
     std::cout << "What is the first number? ";
-    std::cin >> first_in;
+    std::getline(std::cin, first_number);
+
+    long first = std::stoi(first_number);
+
     std::cout << "What is the second number? ";
-    std::cin >> second_in;
+    std::getline(std::cin, second_number);
 
-    std::pair<bool, long> result_first = str_to_i<long>(first_in);
-    if (!result_first.first) {
-      std::cout << "illegal first number" << std::endl;
-      continue;
-    }
-    std::pair<bool, long> result_second = str_to_i<long>(second_in);
-    if (!result_second.first) {
-      std::cout << "illegal second number" << std::endl;
-      continue;
-    }
-    first = result_first.second;
-    second = result_second.second;
-    break;
-  }
+    long second = std::stoi(second_number);
 
-  std::cout << first << " + " << second << " = " << first + second << std::endl;
-  std::cout << first << " - " << second << " = " << first - second << std::endl;
-  std::cout << first << " * " << second << " = " << first * second << std::endl;
-  std::cout << first << " / " << second << " = " << first / second << std::endl;
+    std::cout << first << " + " << second << " = " << first + second << std::endl;
+    std::cout << first << " - " << second << " = " << first - second << std::endl;
+    std::cout << first << " * " << second << " = " << first * second << std::endl;
+    std::cout << first << " / " << second << " = " << first / second << std::endl;
 
-  return 0;
+    return 0;
 }
