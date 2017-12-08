@@ -1,0 +1,3 @@
+限界値定義
+int max min
+limit
