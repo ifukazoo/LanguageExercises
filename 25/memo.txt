@@ -1,0 +1,14 @@
+cpp
+ algorithm
+ enum class
+ 無名名前空間
+
+go
+  package
+  String()インターフェース
+  type 宣言
+  列挙
+
+python
+  switch-case
+  enum
