@@ -17,6 +17,13 @@ def any_of(a, f):
     return False
 
 
+def all_of(a, f):
+    for c in a:
+        if not f(c):
+            return False
+    return True
+
+
 def is_punct(s):
     return s in string.punctuation
 
@@ -30,8 +37,8 @@ def is_digit(s):
 
 
 def password_validator(password):
-    number_only = password.isdigit()
-    letter_only = password.isalpha()
+    number_only = all_of(password, is_digit)
+    letter_only = all_of(password, is_alpha)
     contains_special = any_of(password, is_punct)
     contains_letter = any_of(password, is_alpha)
     contains_number = any_of(password, is_digit)
