@@ -1,0 +1,5 @@
+go
+  error を返す
+
+python
+  例外処理
