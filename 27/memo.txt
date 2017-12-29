@@ -1,0 +1,12 @@
+cpp
+  static関数代わりのnamespace
+  ostringstream
+  正規表現
+
+go
+  stringbuilder的なbytes.WriteString()
+  正規表現
+
+python
+  print 改行なし
+  正規表現
