@@ -1,0 +1,11 @@
+cpp
+  関数オブジェクト
+  std::function
+  lambda式
+  キャプチャ
+
+go
+  関数リテラル
+
+python
+  lambda式
