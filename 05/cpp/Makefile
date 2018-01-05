@@ -13,7 +13,7 @@ GTEST_DIR     := ~/github/googletest
 GTEST_INCLUDE := $(GTEST_DIR)/include
 GTEST_LIB_DIR := $(GTEST_DIR)/make
 
-CPPFLAGS := -I ../../cppinclude/include -std=c++11 -Wall -Wextra -MMD -MP
+CPPFLAGS := -std=c++11 -Wall -Wextra -MMD -MP
 debug:           CPPFLAGS += -pg
 $(TEST_PROGRAM): CPPFLAGS := -I $(GTEST_INCLUDE)
 

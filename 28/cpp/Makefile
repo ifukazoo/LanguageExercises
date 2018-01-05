@@ -14,7 +14,7 @@ $(PROGRAM): $(OBJS)
 $(TEST)   : $(OBJS)
 
 # ビルドオプション
-CPPFLAGS := -I $(INCLUDE) -Wall -Wextra -std=c++11
+CPPFLAGS := -Wall -Wextra -std=c++11
 $(PROGRAM): CPPFLAGS += -MMD -MP
 $(OBJS)   : CPPFLAGS += -MMD -MP
 $(TEST)   : CPPFLAGS += -I $(GTEST_INCLUDE)
