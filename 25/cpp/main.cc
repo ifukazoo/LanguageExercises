@@ -3,33 +3,31 @@
 
 #include "password_validator.h"
 
-inline std::string strength_to_string(Strength strength)
-{
-    switch(strength) {
-    case Strength::VERY_WEAK:
-        return "very weak";
-    case Strength::WEAK:
-        return "weak";
-    case Strength::NORMAL:
-        return "normal";
-    case Strength::STRONG:
-        return "strong";
-    case Strength::VERY_STRONG:
-        return "very strong";
-    default:
-        break;
+inline std::string strength_to_string(Strength strength) {
+    switch (strength) {
+        case Strength::VERY_WEAK:
+            return "very weak";
+        case Strength::WEAK:
+            return "weak";
+        case Strength::NORMAL:
+            return "normal";
+        case Strength::STRONG:
+            return "strong";
+        case Strength::VERY_STRONG:
+            return "very strong";
+        default:
+            break;
     }
-    assert(true);
+    assert(false);
 }
 
-inline void output(const std::string& s)
-{
+inline void output(const std::string& s) {
     auto strength = password_validator(s);
-    std::cout << "The password '" << s << "' is a " << strength_to_string(strength) << " password." << std::endl;
+    std::cout << "The password '" << s << "' is a "
+              << strength_to_string(strength) << " password." << std::endl;
 }
 
-int main()
-{
+int main() {
     output("12345");
     output("abcdef");
     output("abc123xyz");
@@ -37,4 +35,3 @@ int main()
 
     return 0;
 }
-
