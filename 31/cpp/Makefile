@@ -5,7 +5,6 @@ PROGRAM       := main
 TEST          := unit_test
 OBJS          := karvonen.o
 
-INCLUDE       := ../../cppinclude/include
 GTEST_DIR     := ~/github/googletest      # release1.7.0
 GTEST_INCLUDE := $(GTEST_DIR)/include
 GTEST_LIB_DIR := $(GTEST_DIR)/make
@@ -15,7 +14,7 @@ $(PROGRAM): $(OBJS)
 $(TEST)   : $(OBJS)
 
 # ビルドオプション
-CPPFLAGS := -I $(INCLUDE) -Wall -Wextra -std=c++11
+CPPFLAGS := -Wall -Wextra -std=c++11
 $(PROGRAM): CPPFLAGS += -MMD -MP
 $(TEST)   : CPPFLAGS += -I $(GTEST_INCLUDE)
 $(TEST)   : LDFLAGS  := -L $(GTEST_LIB_DIR)

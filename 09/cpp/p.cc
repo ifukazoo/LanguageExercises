@@ -1,16 +1,12 @@
-#include <cstdlib>
 #include <cmath>
+#include <cstdlib>
 
+#include <algorithm>  // min
 #include <iostream>
-#include <algorithm> // min
-
-#include "functions.h"
-
 
 const double kPaintablePerGallon = 350.0;
 
-int main()
-{
+int main() {
     std::string input;
 
     std::cout << "What is the length of the room in feet? ";
@@ -26,7 +22,8 @@ int main()
     int num_gallon = static_cast<int>(ceil(gallon));
 
     std::cout << "You will need to purchase " << num_gallon
-        << " gallons of paint to cover " << feet_room << " square feet." << std::endl;
+              << " gallons of paint to cover " << feet_room << " square feet."
+              << std::endl;
 
     return 0;
 }
