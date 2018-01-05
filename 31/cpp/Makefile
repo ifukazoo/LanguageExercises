@@ -5,8 +5,8 @@ PROGRAM       := main
 TEST          := unit_test
 OBJS          := karvonen.o
 
-# release1.7.0
-GTEST_DIR     := ~/github/googletest
+INCLUDE       := ../../cppinclude/include
+GTEST_DIR     := ~/github/googletest      # release1.7.0
 GTEST_INCLUDE := $(GTEST_DIR)/include
 GTEST_LIB_DIR := $(GTEST_DIR)/make
 
@@ -17,7 +17,6 @@ $(TEST)   : $(OBJS)
 # ビルドオプション
 CPPFLAGS := -I $(INCLUDE) -Wall -Wextra -std=c++11
 $(PROGRAM): CPPFLAGS += -MMD -MP
-$(OBJS)   : CPPFLAGS += -MMD -MP
 $(TEST)   : CPPFLAGS += -I $(GTEST_INCLUDE)
 $(TEST)   : LDFLAGS  := -L $(GTEST_LIB_DIR)
 $(TEST)   : LDLIBS   := -l:gtest_main.a -lpthread
