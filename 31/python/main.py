@@ -1,25 +1,8 @@
 #!/usr/bin/env python
 # coding: -utf8
 
-import sys
+import user_input as ui
 import karvonen as k
-
-
-def read_user_input(prompter):
-    while True:
-        try:
-            user_input = input(prompter)
-            return int(user_input), False
-        except EOFError:
-            return 0, True
-        except ValueError:
-            print("Sorry. That's not a valid input.\n", end="")
-            continue
-
-def exit_by_eof():
-    print("failed to read user input.\n", end="", file=sys.stderr)
-    sys.exit(1)
-
 
 
 def partition_format(left, right):
@@ -40,15 +23,14 @@ def heart_rate_line(intensity, rate):
     return partition_format(left, right)
 
 
-
 if __name__ == '__main__':
-    age, eof = read_user_input("Enter your age: ")
+    age, eof = ui.read_user_input("Enter your age: ")
     if eof:
-        exit_by_eof()
+        ui.exit_by_eof()
 
-    resting_pulse, eof = read_user_input("Enter your resting pulse: ")
+    resting_pulse, eof = ui.read_user_input("Enter your resting pulse: ")
     if eof:
-        exit_by_eof()
+        ui.exit_by_eof()
 
     print(title())
     print(separator())
