@@ -10,4 +10,4 @@ else
     CMD="make clean"
   fi
 fi
-/bin/ls |grep -P '^\d+$' | parallel --no-notice 'cd {}/cpp && '"$CMD"' 2>&1 || pwd'
+/bin/ls |grep -P '^\d+$' | parallel --no-notice 'cd {}/cpp && echo -n $(pwd): && '"$CMD"' 2>&1'
