@@ -1,9 +1,8 @@
 #!/usr/bin/env python
 # coding: -utf8
 
-import sys
 
-def read_user_input(prompter):
+def read_user_input(prompter, invalid_msg):
     while True:
         try:
             user_input = input(prompter)
@@ -11,10 +10,5 @@ def read_user_input(prompter):
         except EOFError:
             return 0, True
         except ValueError:
-            print("Sorry. That's not a valid input.\n", end="")
+            print(invalid_msg)
             continue
-
-def exit_by_eof():
-    print("failed to read user input.\n", end="", file=sys.stderr)
-    sys.exit(1)
-

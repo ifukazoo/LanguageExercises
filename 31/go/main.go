@@ -24,12 +24,13 @@ func heartRateLine(intensity, rate int) string {
 }
 
 func main() {
-	age, err := readUserInput("Enter your age: ")
+	invalidMsg := "Sorry. That's not a valid input."
+	age, err := readUserInput("Enter your age: ", invalidMsg)
 	if err != nil {
 		fmt.Fprintln(os.Stderr, err.Error())
 		os.Exit(1)
 	}
-	restingPulse, err := readUserInput("Enter your resting pulse: ")
+	restingPulse, err := readUserInput("Enter your resting pulse: ", invalidMsg)
 	if err != nil {
 		fmt.Fprintln(os.Stderr, err.Error())
 		os.Exit(1)
