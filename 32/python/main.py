@@ -11,7 +11,6 @@ def user_want_to_continue():
 
 
 if __name__ == '__main__':
-    import random
     while True:
         game.start_game()
 
