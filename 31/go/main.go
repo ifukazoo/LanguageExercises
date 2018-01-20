@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"os"
+	"strconv"
 )
 
 func partitionFormat(left, right string) string {
@@ -23,18 +23,19 @@ func heartRateLine(intensity, rate int) string {
 	return partitionFormat(left, right)
 }
 
+func validateNumber(input string) (bool, int) {
+	num, err := strconv.Atoi(input)
+	if err != nil {
+		return false, 0
+	}
+	return true, num
+}
+
+const invalidMsg = "Sorry. That's not a valid input."
+
 func main() {
-	invalidMsg := "Sorry. That's not a valid input."
-	age, err := readUserInput("Enter your age: ", invalidMsg)
-	if err != nil {
-		fmt.Fprintln(os.Stderr, err.Error())
-		os.Exit(1)
-	}
-	restingPulse, err := readUserInput("Enter your resting pulse: ", invalidMsg)
-	if err != nil {
-		fmt.Fprintln(os.Stderr, err.Error())
-		os.Exit(1)
-	}
+	age := readUserInputWithValidator("Enter your age: ", validateNumber, invalidMsg)
+	restingPulse := readUserInputWithValidator("Enter your resting pulse: ", validateNumber, invalidMsg)
 
 	fmt.Println(title())
 	fmt.Println(separator())

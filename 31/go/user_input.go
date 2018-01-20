@@ -4,8 +4,9 @@ import (
 	"bufio"
 	"fmt"
 	"os"
-	"strconv"
 )
+
+type intvalidator func(string) (bool, int)
 
 var scanner *bufio.Scanner
 
@@ -13,8 +14,9 @@ func init() {
 	scanner = bufio.NewScanner(os.Stdin)
 }
 
-func input(msg string) (string, error) {
-	_, err := fmt.Printf(msg)
+// input プロンプトを出してユーザー入力を取得する.
+func input(prompter string) (string, error) {
+	_, err := fmt.Printf(prompter)
 	if err != nil {
 		return "", err
 	}
@@ -29,18 +31,27 @@ func input(msg string) (string, error) {
 	return scanner.Text(), nil
 }
 
-func readUserInput(prompter, invalidMsg string) (int, error) {
-
-retry:
+// readUserInput プロンプトを出してユーザー入力を取得する.
+// EOFが入力された場合はプログラム終了する
+func readUserInput(prompter string) string {
 	userInput, err := input(prompter)
 	if err != nil {
-		// EOF or ERROR
-		return 0, err
+		fmt.Fprintln(os.Stderr, err.Error())
+		os.Exit(1)
 	}
-	intValue, err := strconv.Atoi(userInput)
-	if err != nil {
+	return userInput
+}
+
+// readUserInputWithValidator プロンプトを出してユーザー入力を取得して,
+// 希望の型に変換する.希望に沿わない入力だった場合は再度入力をうながす.
+func readUserInputWithValidator(prompter string, validator intvalidator, invalidMsg string) int {
+
+retry:
+	input := readUserInput(prompter)
+	ok, value := validator(input)
+	if !ok {
 		fmt.Println(invalidMsg)
 		goto retry
 	}
-	return intValue, nil
+	return value
 }

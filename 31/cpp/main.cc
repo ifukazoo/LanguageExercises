@@ -23,7 +23,7 @@ std::string heart_rate_line(int intensity, int rate) {
     return partition_format(left.str(), right.str());
 }
 
-bool safe_stoi(const std::string& s, int& value) {
+bool validate_number(const std::string& s, int& value) {
     try {
         value = std::stoi(s);
     } catch (std::invalid_argument e) {
@@ -34,22 +34,15 @@ bool safe_stoi(const std::string& s, int& value) {
     return true;
 }
 
-int read_user_input_int(const std::string& prompter,
-                        const std::string& invalid_msg) {
-    int value = 0;
-    if (!read_user_input<int>(prompter, invalid_msg, safe_stoi, value)) {
-        exit(EXIT_FAILURE);
-    }
-    return value;
-}
+const std::string INVALID_MSG = "Sorry. That's not a valid input.";
 
 }  // namespace
 
 int main() {
-    auto invalid_msg = "Sorry. That's not a valid input.";
-    int age = read_user_input_int("Enter your age: ", invalid_msg);
-    int resting_pulse =
-        read_user_input_int("Enter your resting pulse: ", invalid_msg);
+    int age = read_user_input_with_validator<int>("Enter your age: ",
+                                                  validate_number, INVALID_MSG);
+    int resting_pulse = read_user_input_with_validator<int>(
+        "Enter your resting pulse: ", validate_number, INVALID_MSG);
 
     std::cout << title();
     std::cout << separator();

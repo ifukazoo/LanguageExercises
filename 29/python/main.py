@@ -1,24 +1,19 @@
 #!/usr/bin/env python
 # coding: -utf8
 
-import sys
 import user_input as ui
 
 
+def validate_rate(s):
+    rate = int(s)
+    if rate == 0:
+        raise ValueError
+    return rate
+
+
 if __name__ == '__main__':
-    invalid_msg = "Sorry. That's not a valid input."
-
-    while True:
-        rate, eof = ui.read_user_input(
-            "What is the rate of return? ", invalid_msg)
-        if eof:
-            sys.exit(1)
-
-        if rate == 0:
-            print(invalid_msg)
-            continue
-        else:
-            break
+    rate = ui.read_user_input_with_validator(
+        "What is the rate of return? ", validate_rate,  "Sorry. That's not a valid input.")
 
     years = int(72 / rate)
     print(

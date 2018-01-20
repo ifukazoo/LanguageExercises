@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # coding: -utf8
 
-import sys
 import user_input as ui
 import karvonen as k
 
@@ -24,16 +23,19 @@ def heart_rate_line(intensity, rate):
     return partition_format(left, right)
 
 
+def validate_number(s):
+    return int(s)
+
+
+INVALID_MSG = "Sorry. That's not a valid input."
+
 if __name__ == '__main__':
-    invalid_msg = "Sorry. That's not a valid input."
 
-    age, eof = ui.read_user_input("Enter your age: ", invalid_msg)
-    if eof:
-        sys.exit(1)
+    age = ui.read_user_input_with_validator(
+        "Enter your age: ", validate_number, INVALID_MSG)
 
-    resting_pulse, eof = ui.read_user_input("Enter your resting pulse: ",invalid_msg)
-    if eof:
-        sys.exit(1)
+    resting_pulse = ui.read_user_input_with_validator(
+        "Enter your resting pulse: ", validate_number, INVALID_MSG)
 
     print(title())
     print(separator())

@@ -2,7 +2,8 @@
 #include "user_input.h"
 
 namespace {
-bool safe_stoi(const std::string& s, int& value) {
+
+bool validate_number(const std::string& s, int& value) {
     try {
         value = std::stoi(s);
     } catch (std::invalid_argument e) {
@@ -13,24 +14,21 @@ bool safe_stoi(const std::string& s, int& value) {
     return true;
 }
 
-int read_user_input_int(const std::string& prompter,
-                        const std::string& invalid_msg) {
-    int value;
-    if (!read_user_input<int>(prompter, invalid_msg, safe_stoi, value)) {
-        exit(EXIT_FAILURE);
+bool validate_rate(const std::string& s, int& value) {
+    if (!validate_number(s, value)) {
+        return false;
     }
-    return value;
+    if (value == 0) {
+        return false;
+    }
+    return true;
 }
 }
 int main() {
     auto invalid_msg = "Sorry. That's not a valid input.";
 
-retry:
-    int rate = read_user_input_int("What is the rate of return? ", invalid_msg);
-    if (rate == 0) {
-        std::cout << invalid_msg << std::endl;
-        goto retry;
-    }
+    int rate = read_user_input_with_validator<int>(
+        "What is the rate of return? ", validate_rate, invalid_msg);
     int years = 72 / rate;
     std::cout << "It will take " << years
               << " years to double your initial investment.\n";
