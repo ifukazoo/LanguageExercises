@@ -7,7 +7,11 @@
 namespace {
 
 int generate_ramdom_index(int max) {
-    std::srand(std::time(nullptr));
+    static bool seed = false;
+    if (!seed) {
+        std::srand(std::time(nullptr));
+        seed = true;
+    }
     return std::rand() % max;
 }
 

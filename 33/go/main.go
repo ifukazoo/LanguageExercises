@@ -6,8 +6,13 @@ import (
 	"time"
 )
 
+var r *rand.Rand
+
+func init() {
+	r = rand.New(rand.NewSource(time.Now().UnixNano()))
+}
+
 func generateRamdomIndex(max int) int {
-	r := rand.New(rand.NewSource(time.Now().UnixNano()))
 	return r.Int() % max
 }
 

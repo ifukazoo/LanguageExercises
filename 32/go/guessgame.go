@@ -9,8 +9,13 @@ import (
 
 const invalidMsg = "Sorry. That's not a valid input."
 
+var r *rand.Rand
+
+func init() {
+	r = rand.New(rand.NewSource(time.Now().UnixNano()))
+}
+
 func generateGoalNumber(level int) int {
-	r := rand.New(rand.NewSource(time.Now().UnixNano()))
 	max := 1
 	for i := 0; i < level; i++ {
 		max *= 10

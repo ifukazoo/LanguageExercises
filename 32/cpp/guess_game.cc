@@ -19,7 +19,11 @@ bool validate_number(const std::string& s, int& value) {
 }
 
 int generate_goal_number(int level) {
-    std::srand(std::time(nullptr));
+    static bool seed = false;
+    if (!seed) {
+        std::srand(std::time(nullptr));
+        seed = true;
+    }
     int max = 1;
     for (int i = 0; i < level; i++) {
         max *= 10;
