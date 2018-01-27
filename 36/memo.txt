@@ -1,0 +1,6 @@
+cpp
+  std::accumulateの使い方
+  ラムダ式
+  小数の切り上げ
+python
+  reduce
