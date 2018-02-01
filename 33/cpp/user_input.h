@@ -6,10 +6,8 @@
 
 namespace {
 
-using cstring = const std::string;
-
 // input プロンプトを出してユーザー入力を取得する.
-std::string input(cstring& prompter) {
+std::string input(const std::string& prompter) {
     std::string user_input;
     std::cout << prompter;
     std::getline(std::cin, user_input);
@@ -18,7 +16,7 @@ std::string input(cstring& prompter) {
 
 // read_user_input プロンプトを出してユーザー入力を取得する.
 // EOFが入力された場合はプログラム終了する
-std::string read_user_input(cstring& prompter) {
+std::string read_user_input(const std::string& prompter) {
     auto user_input = input(prompter);
     if (std::cin.eof()) {
         exit(1);
@@ -29,9 +27,10 @@ std::string read_user_input(cstring& prompter) {
 // readUserInputWithValidator プロンプトを出してユーザー入力を取得して,
 // 希望の型に変換する.希望に沿わない入力だった場合は再度入力をうながす.
 template <typename T>
-T read_user_input_with_validator(cstring& prompter,
-                                 std::function<bool(cstring&, T&)> validator,
-                                 cstring& invalid_msg) {
+T read_user_input_with_validator(
+    const std::string& prompter,
+    std::function<bool(const std::string&, T&)> validator,
+    const std::string& invalid_msg) {
 retry:
     auto user_input = read_user_input(prompter);
     T read_value;
