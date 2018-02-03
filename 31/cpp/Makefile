@@ -5,9 +5,9 @@ PROGRAM       := main
 TEST          := unit_test
 OBJS          := karvonen.o
 
-GTEST_DIR     := ~/github/googletest      # release1.7.0
-GTEST_INCLUDE := $(GTEST_DIR)/include
-GTEST_LIB_DIR := $(GTEST_DIR)/make
+GTEST_DIR     := ~/github/googletest      # release1.8.0
+GTEST_INCLUDE := $(GTEST_DIR)/googletest/include
+GTEST_LIB_DIR := $(GTEST_DIR)/googletest/make
 
 # 依存関係
 $(PROGRAM): $(OBJS)

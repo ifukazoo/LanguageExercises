@@ -4,10 +4,10 @@
 PROGRAM       := main
 TEST          := unit_test
 
-# release1.7.0
+# release1.8.0
 GTEST_DIR     := ~/github/googletest
-GTEST_INCLUDE := $(GTEST_DIR)/include
-GTEST_LIB_DIR := $(GTEST_DIR)/make
+GTEST_INCLUDE := $(GTEST_DIR)/googletest/include
+GTEST_LIB_DIR := $(GTEST_DIR)/googletest/make
 
 # 依存関係
 $(PROGRAM): $(OBJS)
