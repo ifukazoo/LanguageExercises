@@ -28,9 +28,10 @@ void print_horizontal_line() {
 
 void print_row(int row) {
     // row はコピー形式でキャプチャ
+    // 明示的にキャプチャする. Effective Modern C++ Item31
     table_printer(
-        [=]() { std::cout << "|" << std::setw(4) << row; },
-        [=](int col) { std::cout << "|" << std::setw(4) << row * col; },
+        [row]() { std::cout << "|" << std::setw(4) << row; },
+        [row](int col) { std::cout << "|" << std::setw(4) << row * col; },
         []() { std::cout << "|" << std::endl; });
 }
 }  // namespace
