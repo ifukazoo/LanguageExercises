@@ -11,6 +11,7 @@ void print_result(std::string path, const std::vector<std::string>& names) {
     for (auto it = names.begin(); it != names.end(); it++) {
         ofs << *it << std::endl;
     }
+    ofs.close();
 }
 }  // namespace
 
