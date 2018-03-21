@@ -1,0 +1,6 @@
+cpp
+  trim の実装
+  boostライブラリ
+
+go,python
+  テンプレートを使ったhtml作成
