@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    x:Class="FlickrSearch.MainPage">
+    <StackLayout VerticalOptions="Center"
+        Margin="20">
+        <!-- Place new controls here -->
+        <Label Text="Flickr Photo Search"
+            XAlign="Center"
+            FontSize="Large"
+            HorizontalOptions="FillAndExpand" />
+        <SearchBar x:Name="Tags"
+            Placeholder="strings"
+            HorizontalOptions="CenterAndExpand"
+            Keyboard="Text" />
+        <Button Text="Search"
+            HorizontalOptions="FillAndExpand"
+            Clicked="OnClickedSearch" />
+        <ListView x:Name="listView"
+            HasUnevenRows="true"
+            ItemSelected="Handle_ItemSelected">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ImageCell Text="{Binding title}"
+                        ImageSource="{Binding media.m}" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+</ContentPage>
