@@ -20,3 +20,6 @@ $ npm run generate
 ```
 
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+
+# .envファイルの追加が必要
+$ echo FIREBASE_PROJECT_ID='xxxxxxx-yyyyy' > .env
