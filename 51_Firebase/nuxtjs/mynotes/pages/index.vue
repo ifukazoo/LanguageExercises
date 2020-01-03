@@ -28,10 +28,13 @@ export default {
   },
   computed: {
     notes() {
+      // getters.notes などとしたかったが
+      // gettersはこの形でしか参照できない.
       return this.$store.getters["notes/notes"];
     }
   },
   filters: {
+    // momentライブラリをimportした
     dateFilter: function(date) {
       return moment(date).format("YYYY-MM-DD");
     }

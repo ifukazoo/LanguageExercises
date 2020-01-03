@@ -12,6 +12,8 @@ const state = function () {
 
 export const getters = {
     notes: function (state) {
+        // lodashのsortで複製を返すようにする. デフォルトのsortは破壊的なメソッド
+        // なので,VuexStoreの規約に反するのでNGとなる
         return lodash.sortBy(state.lists, "created").map(note => {
             return {
                 text: note.text,
@@ -20,6 +22,8 @@ export const getters = {
         })
     }
 }
+
+// お約束で書いておく必要あり.
 export const mutations = {
     ...vuexfireMutations,
 }
