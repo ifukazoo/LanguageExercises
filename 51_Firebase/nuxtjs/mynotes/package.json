@@ -1,0 +1,17 @@
+{
+  "name": "mynotes",
+  "version": "1.0.0",
+  "description": "My premium Nuxt.js project",
+  "author": "yamanobori_old",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "nuxt": "^2.0.0"
+  },
+  "devDependencies": {}
+}
